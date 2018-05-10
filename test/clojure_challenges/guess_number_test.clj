@@ -3,5 +3,5 @@
             [clojure-challenges.guess-number :refer :all]))
 
 (deftest a-test
-  (testing "FIXME, I fail."
+  (testing "FIXME, I always pass."
     (is (= 1 1))))
