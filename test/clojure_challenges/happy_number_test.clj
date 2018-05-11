@@ -2,6 +2,12 @@
   (:require [clojure.test :refer :all]
             [clojure-challenges.happy-number :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest happy?-test
+  (testing "'happy?' fn."
+    (is (= (happy? 1) true))
+    (is (= (happy? 10) true))
+    (is (= (happy? 100000) true))
+    (is (= (happy? 7) true))
+    (is (= (happy? 986543210) true))
+    (is (= (happy? 3) false))
+    (is (= (happy? 2) false))))
