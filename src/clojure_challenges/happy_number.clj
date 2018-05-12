@@ -8,11 +8,12 @@
 
 (defn happy?
   [n]
-  (loop [result (process n)
-         history #{n}]
-    (if (= result 1) true
-        (if (contains? history result) false
-            (recur result (conj history result))))))
+  (loop [nmbr n
+         history #{}]
+    (let [result (process nmbr)]
+      (if (= result 1) true
+          (if (contains? history nmbr) false
+              (recur result (conj history nmbr)))))))
 
 (defn -main
   "Happy number challenge."
