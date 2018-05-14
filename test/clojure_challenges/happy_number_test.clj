@@ -13,7 +13,7 @@
     (is (= (happy? 2) false))))
 
 (deftest happy?-are-test
-  (testing "'happy' fn (with 'are')."
+  (testing "'happy?' fn (with 'are')."
     (are [n truth-value] (= (happy? n) truth-value)
       1 true
       10 true
