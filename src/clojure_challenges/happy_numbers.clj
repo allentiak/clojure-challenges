@@ -1,6 +1,5 @@
 (ns clojure-challenges.happy-numbers
-  (:gen-class)
-  (:require [clojure.string :as str]))
+  (:gen-class))
 
 ;; Source: http://www.4clojure.com/problem/86
 ;;
