@@ -15,13 +15,12 @@
   [n]
   (set (conj (filter (partial divisible? n) (range 1 (inc (quot n 2)))) n)))
 
-(defn- process
-  [n]
-  n)
-
 (defn perfect?
   [n]
-  true)
+  ;; n + n = 2*n
+  ;; this implementation requires clojure.set
+  ;; (= n (reduce + (clojure.set/difference (divisors n) #{n}))))
+  (= (* 2 n) (reduce + (divisors n))))
 
 (defn -main
   "Perfect numbers challenge."
