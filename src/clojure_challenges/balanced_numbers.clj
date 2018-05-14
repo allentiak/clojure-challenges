@@ -9,7 +9,9 @@
 
 (defn- process
   [n]
-  n)
+  (let [digits (map (comp read-string str) (str n))
+        half-size (inc (quot (count digits) 2))]
+    (= (map (reduce +) (partition half-size digits)))))
 
 (defn balanced?
   [n]
