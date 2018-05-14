@@ -7,15 +7,11 @@
 ;;
 ;; Write a function which accepts an integer n, and returns true iff n is balanced.)
 
-(defn- process
-  [n]
-  (let [digits (map (comp read-string str) (str n))
-        half-size (inc (quot (count digits) 2))]
-    (= (map (reduce +) (partition half-size digits)))))
-
 (defn balanced?
   [n]
-  true)
+  (let [digits (map (comp read-string str) (str n))
+        half-size (quot (count digits) 2)]
+    (reduce = (map (comp (partial reduce +) pos?) (take-nth 2 (partition-all half-size digits))))))
 
 (defn -main
   "balanced numbers challenge."
