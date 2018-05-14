@@ -7,11 +7,21 @@
 ;;
 ;; Write a function which returns true for perfect numbers and false otherwise.)
 
+(defn- divisible?
+  [n m]
+  (zero? (mod n m)))
+
+(defn divisors
+  [n]
+  (set (conj (filter (partial divisible? n) (range 1 (inc (quot n 2)))) n)))
+
 (defn- process
-  [n])
+  [n]
+  n)
 
 (defn perfect?
-  [n])
+  [n]
+  true)
 
 (defn -main
   "Perfect numbers challenge."
