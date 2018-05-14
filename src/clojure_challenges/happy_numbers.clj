@@ -1,4 +1,4 @@
-(ns clojure-challenges.happy-number
+(ns clojure-challenges.happy-numbers
   (:gen-class)
   (:require [clojure.string :as str]))
 
@@ -22,6 +22,6 @@
               (recur result (conj history nmbr)))))))
 
 (defn -main
-  "Happy number challenge."
+  "Happy numbers challenge."
   [& args]
   (println "OK"))

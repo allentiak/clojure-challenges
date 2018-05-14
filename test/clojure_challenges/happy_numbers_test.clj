@@ -1,6 +1,6 @@
-(ns clojure-challenges.happy-number-test
+(ns clojure-challenges.happy-numbers-test
   (:require [clojure.test :refer :all]
-            [clojure-challenges.happy-number :refer :all]))
+            [clojure-challenges.happy-numbers :refer :all]))
 
 (deftest happy?-is-test
   (testing "'happy?' fn (with 'is)."
