@@ -11,7 +11,9 @@
   [n]
   (let [digits (map (comp read-string str) (str n))
         half-size (quot (count digits) 2)]
-    (reduce = (map (comp (partial reduce +) pos?) (take-nth 2 (partition-all half-size digits))))))
+    (if (zero? half-size)
+      true
+      (reduce = (map (partial reduce +) (list (take half-size digits) (take-last half-size digits)))))))
 
 (defn -main
   "balanced numbers challenge."
