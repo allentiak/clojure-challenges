@@ -12,6 +12,7 @@
 
 
 (defn dance
-  [& args]
-  (if (nil? args) nil
-    (str/join ", " (sort args))))
+  ([]
+   nil)
+  ([a & args]
+   (str/join ", " (sort (conj args a)))))
