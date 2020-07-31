@@ -13,4 +13,5 @@
 
 (defn dance
   [& args]
-  (str/join ", " (sort args)))
+  (if (nil? args) nil
+    (str/join ", " (sort args))))
