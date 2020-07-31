@@ -1,5 +1,5 @@
 (ns clojure-challenges.making-data-dance-test
-  (:require [clojure-challenges.making-data-dance :as mdt]
+  (:require [clojure-challenges.making-data-dance :refer :all]
             [clojure.test :refer :all]))
 
 
