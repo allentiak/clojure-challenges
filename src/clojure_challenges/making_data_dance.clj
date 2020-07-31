@@ -15,4 +15,7 @@
   ([]
    nil)
   ([a & args]
-   (str/join ", " (sort (conj args a)))))
+   (let [everything (cons a args)]
+     (if (not= everything (sort everything))
+       (seq everything)
+       (str/join ", " (sort everything))))))
