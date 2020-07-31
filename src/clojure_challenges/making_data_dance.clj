@@ -1,5 +1,6 @@
 (ns clojure-challenges.making-data-dance
-  (:gen-class))
+  (:gen-class)
+  (:require [clojure.string :as str]))
 
 ;; Source: http://www.4clojure.com/problem/113
 ;;
@@ -12,4 +13,4 @@
 
 (defn dance
   [& args]
-  "1, 2, 3")
+  (str/join ", " (sort args)))
