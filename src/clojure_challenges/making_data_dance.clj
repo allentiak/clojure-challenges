@@ -11,11 +11,20 @@
 ;;
 
 
+;; CHEATED :-(
+;; based on https://github.com/MoyTW/4clojure/blob/8cd6190c5235dd6d492b20df258431218225ba43/Solutions/113-Making_Data_Dance.clj
+;; Whereas I could figure out the inner workings of the fn, I could not figure out the use of reify, as I hadn't seen it before.
+
+;; TODO: fully understand `reify`
+
 (defn dance
   ([]
    nil)
-  ([a & args]
-   (let [everything (cons a args)]
-     (if (not= everything (sort everything))
-       (seq everything)
-       (str/join ", " (sort everything))))))
+  ([args]
+   (reify
+    java.lang.Object
+    (toString [_]
+      (str/join ", " (sort args)))
+    clojure.lang.ISeq
+    (seq [_]
+      (distinct args)))))
