@@ -14,4 +14,8 @@
                "-d" "test"]
    :exec-fn cognitect.test-runner.api/test}
   :run
-  {:main-opts ["-m" "clojure-challenges.scramble-webserver"]}}}
+  {:main-opts ["-m" "clojure-challenges.scramble-webserver"]}
+  :cljs
+  {:extra-deps {thheller/shadow-cljs {:mvn/version "2.16.12"}}
+   :main-opts ["-m" "shadow.cljs.devtools.cli"]}}}
+

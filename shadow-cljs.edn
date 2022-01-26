@@ -1,0 +1,6 @@
+{:deps true
+ :builds {:webapp {:target :browser
+                   :output-dir "resources/public/js/compiled"
+                   :asset-path "js/compiled"
+                   :modules {:main {:entries [clojure-challenges.scramble-webapp]}}}}}
+
