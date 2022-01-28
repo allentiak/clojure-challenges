@@ -12,6 +12,19 @@ FIXME: explanation
 
     $ java -jar target/clojure-challenges-0.1.0-SNAPSHOT-standalone.jar [args]
 
+
+Run tests:
+
+    % clj -M:test
+
+Run the web backend:
+
+    % clj -M:run 3000
+
+Run the web frontend:
+
+    % clj -M:cljs watch webapp
+
 ## Options
 
 FIXME: listing of options this app accepts.
