@@ -1,4 +1,4 @@
-(ns clojure-challenges.guess-number
+(ns clojure-challenges.guess-number-game
   (:gen-class)
   (:require [clojure.string :as str]))
 
