@@ -11,7 +11,7 @@
   [n m]
   (zero? (mod n m)))
 
-(defn divisors
+(defn- divisors
   [n]
   (set (conj (filter (partial divisible? n) (range 1 (inc (quot n 2)))) n)))
 
@@ -21,8 +21,3 @@
   ;; this implementation requires clojure.set
   ;; (= n (reduce + (clojure.set/difference (divisors n) #{n}))))
   (= (* 2 n) (reduce + (divisors n))))
-
-(defn -main
-  "Perfect numbers challenge."
-  [& args]
-  (println "OK"))

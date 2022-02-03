@@ -19,8 +19,3 @@
       (if (= result 1) true
           (if (contains? history nmbr) false
               (recur result (conj history nmbr)))))))
-
-(defn -main
-  "Happy numbers challenge."
-  [& args]
-  (println "OK"))

@@ -14,8 +14,3 @@
     (if (zero? half-size)
       true
       (reduce = (map (partial reduce +) (list (take half-size digits) (take-last half-size digits)))))))
-
-(defn -main
-  "balanced numbers challenge."
-  [& args]
-  (println "OK"))
