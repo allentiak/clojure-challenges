@@ -1,6 +1,6 @@
-(ns clojure-challenges.balanced-numbers-test
+(ns clojure-challenges.apis.balanced-numbers-test
   (:require [clojure.test :refer :all]
-            [clojure-challenges.balanced-numbers :refer :all]
+            [clojure-challenges.apis.balanced-numbers :refer :all]
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]))

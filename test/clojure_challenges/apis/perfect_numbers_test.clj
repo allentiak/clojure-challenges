@@ -1,6 +1,6 @@
-(ns clojure-challenges.perfect-numbers-test
+(ns clojure-challenges.apis.perfect-numbers-test
   (:require [clojure.test :refer :all]
-            [clojure-challenges.perfect-numbers :refer :all]))
+            [clojure-challenges.apis.perfect-numbers :refer :all]))
 
 (deftest divisors-test
   (testing "'divisors' fn (with 'are')"

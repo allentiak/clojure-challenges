@@ -1,4 +1,4 @@
-(ns clojure-challenges.balanced-numbers
+(ns clojure-challenges.apis.balanced-numbers
   (:gen-class))
 
 ;; Source: http://www.4clojure.com/problem/115

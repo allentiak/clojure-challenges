@@ -1,4 +1,4 @@
-(ns clojure-challenges.perfect-numbers
+(ns clojure-challenges.apis.perfect-numbers
   (:gen-class))
 
 ;; Source: http://www.4clojure.com/problem/80
