@@ -6,45 +6,52 @@
    [compojure.core :refer [defroutes ANY GET POST]]
    [compojure.route :as route]
    [ring.adapter.jetty :as jetty]
-   [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
+   [ring.middleware.cookies :refer [wrap-cookies]]
+   [ring.middleware.defaults :refer [site-defaults wrap-defaults]]
+   [ring.middleware.keyword-params :refer [wrap-keyword-params]]
+   [ring.middleware.multipart-params :refer [wrap-multipart-params]]
+   [ring.middleware.params :refer [wrap-params]]
    [ring.middleware.reload :refer [wrap-reload]]))
 
-;; This fn *has* to be public. The param *has* to be there, even if it is never used. It is passed from the resource by Liberator.
-(defn default-page [param]
-  "Just a RESTful interface for 'scramble?'")
+;; This fn *has* to be public. The param *has* to be there, even if it is never used (it is passed from the resource by liberator).
+(defn default-page [req]
+  (if-let [param (:query-params req)]
+    (str "Just a RESTful interface for 'scramble?'
+    This is the param: " param)
+    "Just a RESTful interface for 'scramble?'"))
 
-(defn- default-page-with-param [param]
-  (str "Just a RESTful interface for 'scramble?'
-  This is the param: " param))
-
-(defn- scramble-handler
-  [letters word]
-  (str (scramble/scramble? letters word)))
+(defn scramble-handler
+  [req]
+  (let [params (get-in req [:request :form-params])
+        letters (get params "letters")
+        word (get params "word")]
+    (println "Request (as received by the handler): " req)
+    (str (scramble/scramble? letters word))))
 
 (defresource scramble-resource
-  [letters word]
+  [req]
   :available-media-types ["text/plain"]
   :allowed-methods [:post]
-  :handle-ok (fn [] scramble-handler letters word))
+  :handle-ok (fn [] scramble-handler (:letters req) (:word req)))
 
 (defresource default-page-resource
+  [req]
   :available-media-types ["text/plain"]
-  :handle-ok default-page)
-
-(defresource default-page-resource-with-param
-  [param]
-  :available-media-types ["text/plain"]
-  :handle-ok (fn [_] (default-page-with-param param)))
+  :handle-ok (fn [_] (default-page (:query-params req))))
 
 (defroutes webserver-routes
-  (GET "/" [] default-page-resource)
-  (GET "/:param" [param] (default-page-resource-with-param param))
-  ;;(POST "/scramble" [letters word] (scramble-resource letters word))
+  (GET "/" req default-page-resource)
+  ;;(GET "/:param" [param] (default-page-resource-with-param param))
+  (POST "/scramble" req scramble-resource)
   (route/not-found "This isn't the page you're looking for."))
 
 (def webserver
   (-> webserver-routes
-      (wrap-defaults api-defaults)))
+      ;;(wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
+      (wrap-keyword-params)
+      ;;(wrap-cookies)
+      (wrap-params)
+      #_(wrap-multipart-params)))
 
 (def dev-webserver
   (-> webserver
