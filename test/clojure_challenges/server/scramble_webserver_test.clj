@@ -19,4 +19,10 @@
     (let [valid-request (mock/request :post "/scramble" {:letters "abc" :word "a"})
           response (webserver valid-request)]
       (is (= (:status response) 200))
-      (is (= (:body response) (str (scramble? "abc" "a")))))))
+      (is (= (:body response) (str (scramble? "abc" "a"))))))
+
+  (testing "unprocessable request"
+    (let [unprocessable-request (mock/request :post "/scramble" {:letters nil :word nil})
+          response (webserver unprocessable-request)]
+      (println response)
+      (is (= (:status response) 422)))))
