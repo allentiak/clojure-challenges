@@ -24,11 +24,7 @@
 
   (testing "unprocessable request"
     (let [unprocessable-request (mock/request :post "/scramble" {:letters nil :word nil})
+          ;; the following let is useless; but the test refuses to pass without it...
           request-body (body-string unprocessable-request)
           response (webserver unprocessable-request)]
-      (println "Request: " unprocessable-request)
-      (println "Body String: " request-body)
-      (println "params: " (:params unprocessable-request))
-      (println "form-params: " (:form-params unprocessable-request))
-      (println "Response: " response)
       (is (= (:status response) 422)))))

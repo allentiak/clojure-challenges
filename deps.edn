@@ -1,7 +1,6 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
         compojure/compojure {:mvn/version "1.6.2"}
-        metosin/ring-http-response {:mvn/version "0.9.3"}
         ring/ring {:mvn/version "1.9.5"}
         ring/ring-defaults {:mvn/version "0.3.3"}
         ring/ring-mock {:mvn/version "0.4.0"}}

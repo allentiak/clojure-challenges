@@ -5,7 +5,6 @@
    [compojure.route :as route]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
-   [ring.middleware.http-response :refer [wrap-http-response]]
    [ring.middleware.reload :refer [wrap-reload]]))
 
 (defn default-page-handler [req]
@@ -13,7 +12,9 @@
 
 (defn- scramble-handler
   [letters word]
-  (str (scramble/scramble? letters word)))
+  (if (and letters word)
+    {:status 200 :body (str (scramble/scramble? letters word))}
+    {:status 422 :body "incomplete request"}))
 
 (defroutes webserver-routes
   (GET "/" req default-page-handler)
@@ -22,8 +23,7 @@
 
 (def webserver
   (-> webserver-routes
-      (wrap-defaults api-defaults)
-      (wrap-http-response)))
+      (wrap-defaults api-defaults)))
 
 (def dev-webserver
   (-> #'webserver
