@@ -32,7 +32,7 @@
   [req]
   :available-media-types ["text/plain"]
   :allowed-methods [:post]
-  :handle-ok (fn [] scramble-handler (:letters req) (:word req)))
+  :handle-ok (fn [] (scramble-handler (:letters req) (:word req))))
 
 (defresource default-page-resource
   [req]
@@ -47,11 +47,11 @@
 
 (def webserver
   (-> webserver-routes
-      ;;(wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
+      (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
       (wrap-keyword-params)
-      ;;(wrap-cookies)
+      (wrap-cookies)
       (wrap-params)
-      #_(wrap-multipart-params)))
+      (wrap-multipart-params)))
 
 (def dev-webserver
   (-> webserver
