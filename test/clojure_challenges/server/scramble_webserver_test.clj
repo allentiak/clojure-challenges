@@ -1,6 +1,7 @@
 (ns clojure-challenges.server.scramble-webserver-test
   (:require [clojure.test :refer [deftest is testing]]
             [ring.mock.request :as mock]
+            [ring.util.request :refer [body-string]]
             [clojure-challenges.apis.scramble :refer [scramble?]]
             [clojure-challenges.server.scramble-webserver :refer [default-page-handler webserver]]))
 
@@ -23,6 +24,11 @@
 
   (testing "unprocessable request"
     (let [unprocessable-request (mock/request :post "/scramble" {:letters nil :word nil})
+          request-body (body-string unprocessable-request)
           response (webserver unprocessable-request)]
-      (println response)
+      (println "Request: " unprocessable-request)
+      (println "Body String: " request-body)
+      (println "params: " (:params unprocessable-request))
+      (println "form-params: " (:form-params unprocessable-request))
+      (println "Response: " response)
       (is (= (:status response) 422)))))

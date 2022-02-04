@@ -5,6 +5,7 @@
    [compojure.route :as route]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
+   [ring.middleware.http-response :refer [wrap-http-response]]
    [ring.middleware.reload :refer [wrap-reload]]))
 
 (defn default-page-handler [req]
@@ -21,7 +22,8 @@
 
 (def webserver
   (-> webserver-routes
-      (wrap-defaults api-defaults)))
+      (wrap-defaults api-defaults)
+      (wrap-http-response)))
 
 (def dev-webserver
   (-> #'webserver
