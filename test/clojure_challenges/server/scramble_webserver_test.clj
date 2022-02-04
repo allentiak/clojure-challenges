@@ -27,4 +27,10 @@
           ;; the following let is useless; but the test refuses to pass without it...
           request-body (body-string unprocessable-request)
           response (webserver unprocessable-request)]
-      (is (= (:status response) 422)))))
+      (is (= (:status response) 422))))
+
+  (testing "invalid request"
+    (let [invalid-request (mock/request :post "/scramble" {})
+          response (webserver invalid-request)]
+      (println "Response: " response)
+      (is (= (:status response) 400)))))
