@@ -1,8 +1,7 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
-        compojure/compojure {:mvn/version "1.6.2"}
         ring/ring {:mvn/version "1.9.5"}
-        ring/ring-defaults {:mvn/version "0.3.3"}
+        metosin/reitit {:mvn/version "0.5.15"}
         ring/ring-mock {:mvn/version "0.4.0"}}
  :aliases
  {:test {:extra-paths ["test"]

@@ -9,7 +9,7 @@
     (let [req (mock/request :get "/")
           response (webserver req)]
       (is (= (:status response) 200))
-      (is (= (:body response) (default-page-handler req)))))
+      (is (= (:body response) (:body (default-page-handler req))))))
 
   (testing "invalid route"
     (let [response (webserver (mock/request :get "/whatever"))]
